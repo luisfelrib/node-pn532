@@ -34,7 +34,7 @@ class PN532 extends EventEmitter {
 
         this.frameEmitter = new FrameEmitter(this.hal);
         this.hal.init().then(() => {
-            this.configureSecureAccessModule().then(() => this.emit('ready'));
+            this.configureSecureAccessModule().then(() => {this.emit('ready')});
         });
 
         this.on('newListener', (event) => {
@@ -194,7 +194,6 @@ class PN532 extends EventEmitter {
                     logger.warn('The data format does not match to the specification.');
                 }
                 var block = body.slice(1, body.length - 1); // skip status byte and last byte (not part of memory)
-                // var unknown = body[body.length];
 
                 return block;
         });
@@ -287,7 +286,6 @@ class PN532 extends EventEmitter {
                     logger.warn('The data format does not match to the specification.');
                 }
                 var block = body.slice(1, body.length - 1); // skip status byte and last byte (not part of memory)
-                // var unknown = body[body.length];
 
                 return block;
             });
@@ -325,13 +323,10 @@ class PN532 extends EventEmitter {
                 return self.writeBlock(pageData, {blockAddress: blockAddress})
                 .then(function(block) {
                     blockNum++;
-                    // ndefData = Buffer.concat([ndefData, block]);
                     return writeBlock(blockNum);
                 });
             }
         })(0);
-
-        // return allDataPromise.then(() => ndefData.slice(0, ndefLength));
         return allPromises;
     }
 
@@ -358,17 +353,7 @@ class PN532 extends EventEmitter {
         .then((frame) => {
             var body = frame.getDataBody();
             logger.info('Frame data from mifare classic authenticate', util.inspect(body));
-
-            console.log('body', body);
             return body;
-
-            // var status = body[0];
-            // var tagData = body.slice(1, body.length);
-
-            // return {
-            //     status: status.toString(16),
-            //     tagData: tagData
-            // };
         });
     }
 }

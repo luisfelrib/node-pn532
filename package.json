@@ -1,16 +1,17 @@
 {
   "name": "pn532",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Library to run the PN532 RFID Reader",
-  "repository": "https://github.com/techniq/node-pn532",
+  "repository": "https://github.com/luisfelrib/node-pn532",
   "author": "Sean Lynch <techniq35@gmail.com>",
   "license": "MIT",
   "main": "src/pn532.js",
   "devDependencies": {},
   "dependencies": {
+    "onoff": "^1.1.9",
     "winston": "^0.8.0"
   },
   "engine": {
-    "node": ">=4.0"  
+    "node": ">=4.0"
   }
 }
